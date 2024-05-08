@@ -1,0 +1,37 @@
+version: '3.9'
+
+services:
+  api:
+    build:
+      args:
+        REGISTRY_BASE: node
+      context: .
+    command: ['npm', 'run', 'start:dev']
+    volumes:
+      - .:/home/site/wwwroot/
+    ports:
+      - '${APP_PORT:-4000}:${APP_PORT:-4000}'
+    environment:
+      DB_HOST: postgres
+      DB_PORT: 5432
+    networks:
+      - backend
+
+  postgres:
+    image: postgres:12.5
+    environment:
+      POSTGRES_DB: ${DB_NAME:-postgres}
+      POSTGRES_USER: ${DB_USER_NAME:-admin}
+      POSTGRES_PASSWORD: ${DB_USER_PASSWORD:-admin}
+    ports:
+      - '${DB_PORT:-5432}:5432'
+    volumes:
+      - 'db-data:/var/lib/postgresql/data'
+    networks:
+      - backend
+
+volumes:
+  db-data: {}
+
+networks:
+  backend: 

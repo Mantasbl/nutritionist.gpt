@@ -1,0 +1,11 @@
+# IDE - VSCode
+.vscode
+.vscode/*
+# Dependencies
+node_modules
+
+# Compiled binary addons
+dist
+
+# Environment config vars
+.env
