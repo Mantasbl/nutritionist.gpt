@@ -30,7 +30,6 @@ export class NutritionistChatServiceImpl implements NutritionistChatService {
     // Currently this is done by permitting only single conversation per User, to simplify usage and
     // allow everything to be done from a single endpoint
     const history = await this.buildHistory(user.conversations![0]);
-    try {
       const chain = await this.loadSingleChain();
       const response = await chain.invoke({
         chat_history: history,
@@ -50,10 +49,6 @@ export class NutritionistChatServiceImpl implements NutritionistChatService {
       });
 
       return response.output;
-    } catch (e: unknown) {
-      console.log(e);
-      throw e;
-    }
   }
 
   private loadSingleChain = async () => {
