@@ -10,11 +10,11 @@ import { CONVERSATION_REPOSITORY } from '../constants/repositories';
 export class ConversationEntityManager implements ConversationRepository {
   constructor(
     @Inject(CONVERSATION_REPOSITORY)
-    private ConversationRepository: Repository<ConversationEntity>,
+    private conversationRepository: Repository<ConversationEntity>,
   ) {}
 
   async obtainConversationById(id: number): Promise<Conversation> {
-    const findResult = await this.ConversationRepository.findOne({
+    const findResult = await this.conversationRepository.findOne({
       where: { id },
     });
 
@@ -25,9 +25,9 @@ export class ConversationEntityManager implements ConversationRepository {
   }
 
   async createConversation(params: ConversationCreateParams): Promise<Conversation> {
-    const saveResult = await this.ConversationRepository.save(new ConversationEntity(params.user));
+    const saveResult = await this.conversationRepository.save(new ConversationEntity(params.user));
 
-    const findResult = await this.ConversationRepository.findOne({
+    const findResult = await this.conversationRepository.findOne({
       where: { id: saveResult.id },
     });
 

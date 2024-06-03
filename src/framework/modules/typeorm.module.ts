@@ -1,6 +1,6 @@
-import { DataSource } from 'typeorm';
 import { Global, Module } from '@nestjs/common';
 import { dataSource } from 'infrastructure/persistence/ormconfig';
+import { DataSource } from 'typeorm';
 
 @Global() // makes the module available globally for other modules once imported in the app modules
 @Module({

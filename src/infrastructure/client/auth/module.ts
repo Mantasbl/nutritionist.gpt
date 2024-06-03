@@ -1,13 +1,13 @@
 import { Module } from '@nestjs/common';
 import { ConfigModule } from '@nestjs/config';
 import { JwtModule, JwtService } from '@nestjs/jwt';
-import { UserEntityManager } from 'infrastructure/persistence/repositories/user';
+import { AuthServiceImpl } from 'domain/services/auth';
 import { JwtStrategy } from 'entrypoints/api/auth/jwt.strategy';
+import { DatabaseModule } from 'infrastructure/persistence/database.module';
+import { UserEntityManager } from 'infrastructure/persistence/repositories/user';
 
 import { CONFIG, PassportJWTOptions } from '../../../config';
 import { factory } from '../../../framework/provider';
-import { AuthServiceImpl } from 'domain/services/auth';
-import { DatabaseModule } from 'infrastructure/persistence/database.module';
 
 @Module({
   imports: [

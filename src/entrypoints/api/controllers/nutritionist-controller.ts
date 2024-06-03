@@ -9,10 +9,11 @@ import {
   UseGuards,
   UsePipes,
 } from '@nestjs/common';
-import { ApiTags, ApiBearerAuth } from '@nestjs/swagger';
+import { ApiBearerAuth, ApiTags } from '@nestjs/swagger';
 import { NutritionistChatService } from 'domain/capabilities/nutritionist-chat-service';
 import { NutritionistChatServiceImpl } from 'domain/services/nutritionist';
 import { UserType } from 'domain/types/user';
+
 import { User } from '../decorators/user';
 import { ApiErrorFilter } from '../exceptions/filters/api-error-filter';
 import { JwtAuthGuard } from '../guards/jwt-auth-guard';
@@ -32,7 +33,7 @@ export class NutritionistChatController {
   constructor(@Inject(NutritionistChatServiceImpl) private nutritionistChatService: NutritionistChatService) {}
 
   @Post('chat')
-  async chat(@User() user: UserType, @Body() input: UserQuery) {
+  async chat(@User() user: UserType, @Body() input: UserQuery): Promise<any> {
     return await this.nutritionistChatService.chat(input.query, user.id);
   }
 }

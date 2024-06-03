@@ -1,4 +1,4 @@
-import { UserRepository, UserEmailFilterParams, UserUpdateParams } from 'domain/capabilities/user-repository';
+import { UserEmailFilterParams, UserRepository } from 'domain/capabilities/user-repository';
 import { UserService } from 'domain/capabilities/user-service';
 import { User } from 'domain/models/user';
 import { UserCreateBody } from 'entrypoints/api/validators/user/user-create-body';
